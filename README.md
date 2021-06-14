@@ -1,4 +1,4 @@
-<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Msv" src="https://images-ext-1.discordapp.net/external/ErdbbJUm8lgGPnEdZJICYfGW_82Aau5NJeovfaK13iA/%3Fsize%3D4096/https/cdn.discordapp.com/avatars/720218422222520410/a810fc5ce3103276af1bb21bb1c81e4d.webp?width=427&height=427"> 
+<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Msv" src="https://media.discordapp.net/attachments/840903410655166464/853924889333727242/circle-cropped_1.png?width=427&height=427"> 
 
 # Msv Music 🎵
 > A Advanced Discord Music Bot with a 24/7 Have Many Premium Features with filters and more willl be add soon
