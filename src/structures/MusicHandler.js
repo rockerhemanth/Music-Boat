@@ -4,7 +4,7 @@ const message = require("../listeners/message");
 const db = require("quick.db");
 
 const { Database } = require("quickmongo");
-const mongo = new Database("mongodb+srv://markamusic:markamusic@marka.3cmwc.mongodb.net/data");
+const mongo = new Database(process.env.MONGO_URI);
 function importData() {
     const data = db.all();
     mongo.import(data).then(() => {
