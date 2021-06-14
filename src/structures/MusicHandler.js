@@ -87,7 +87,10 @@ module.exports = class MusicHandler {
                     let x = db.get(`247_${this.guild.id}`);
                     if(!x == true){
                         this.client.manager.leave(this.guild.id);
-                    };
+                    } 
+                     if (this.textChannel) this.textChannel.send(util.embed()
+                        .setAuthor(" |  Queue Is Empty ", this.client.user.displayAvatarURL()) 
+                    );
                     this.reset();
                     return;
                 }
