@@ -1,11 +1,11 @@
 {
-  "name": "Aqua-Music",
+  "name": "Msv-Music",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "start": "node ."
   },
-  "repository": "https://github.com/Just-Msv/Aqua-Music",
+  "repository": "https://github.com/Just-Msv/Msv-Music",
   "author": "Just-Msv",
   "license": "MIT",
   "dependencies": {
