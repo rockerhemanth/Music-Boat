@@ -1,7 +1,7 @@
 <img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Msv" src="https://media.discordapp.net/attachments/840903410655166464/853924889333727242/circle-cropped_1.png?width=427&height=427"> 
 
 # Msv Music 🎵
-> A Advanced Discord Music Bot with a 24/7 Have Many Premium Features with filters and more willl be add soon
+> A Advanced Discord Music Bot Made With Lavalink And  Have Many Premium Features with filters and more willl be add soon
 
 ## About Msv Music 🚧
 
