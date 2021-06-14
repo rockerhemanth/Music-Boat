@@ -8,7 +8,7 @@
 - A open source Discord bot coded in JavaScript with [Discord.js](https://discord.js.org/#/) & [Lava link](https://www.npmjs.com/package/lavalink) by Msv Team.
 # Bot Setup ⚒
 
-- Clone the Repo by typing git clone `https://github.com/Just-Msv/Aqua-Music` or Download the .rar file
+- Clone the Repo by typing git clone `https://github.com/Just-Msv/Msv-Music` or Download the .rar file
 - Set up your `.env` file with your respective information.
 - **Install** all the packages by typing `npm i`
 - **Start** the bot by typing `npm start`
