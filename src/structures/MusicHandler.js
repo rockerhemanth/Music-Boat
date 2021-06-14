@@ -2,6 +2,7 @@ const Rest = require("./Rest");
 const util = require("../util");
 const message = require("../listeners/message");
 const db = require("quick.db");
+const FiltersValues = require("../constants/FiltersValues");
 
 const { Database } = require("quickmongo");
 const mongo = new Database(process.env.MONGO_URI);
