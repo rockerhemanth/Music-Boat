@@ -5,7 +5,7 @@
 
 ## About Aqua 🚧
 
-- A open source Discord bot coded in JavaScript with [Discord.js](https://discord.js.org/#/) by Aqua Team.
+- A open source Discord bot coded in JavaScript with [Discord.js](https://discord.js.org/#/) & [Lava link](https://www.npmjs.com/package/lavalink) by Aqua Team.
 - Want To Invite Our Aqua Bot Here are the Links 
 ## Invite Our Aqua Bots
 - [Aqua Music 1](https://discord.com/oauth2/authorize?client_id=777165206203007017&scope=bot&permissions=2147478769) | [Aqua Music 2](https://discord.com/oauth2/authorize?client_id=802195829330280498&scope=bot&permissions=2147478769) | [Aqua Music 3](https://discord.com/oauth2/authorize?client_id=798435493469618207&scope=bot&permissions=2147478769)
