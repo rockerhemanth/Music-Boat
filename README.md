@@ -5,7 +5,7 @@
 
 ## About Msv Music 🚧
 
-- A open source Discord bot recoded in JavaScript with [Discord.js](https://discord.js.org/#/) & [Lava link](https://www.npmjs.com/package/lavalink) by Msv Team.
+- A open source Discord bot recoded in JavaScript with [Discord.js](https://discord.js.org/#/) & [Lava link](https://www.npmjs.com/package/lavalink) by My Team.
 
 
 
