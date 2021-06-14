@@ -11,7 +11,7 @@ module.exports = {
         if (msg.author.id !== process.env.OWNER_ID) return;
 
         msg.channel.send(util.embed()
-            .setAuthor("AQUA BOT STATS", msg.client.user.displayAvatarURL())
+            .setAuthor("MSV MUSIC STATS", msg.client.user.displayAvatarURL())
             /*.setTitle("")
             .setURL("h")*/
             .setDescription(
