@@ -7,10 +7,9 @@ module.exports = {
     aliases: ["np", "nowplay"],
     exec: (msg ,args) => {
         const { music } = msg.guild;
-        msg.delete({ timeout: 000 /*time unitl delete in milliseconds*/});
         if (!music.player || !music.player.playing) return msg.channel.send(util.embed().setAuthor(" |  Currently not playing anything.", msg.client.user.displayAvatarURL())		
             .setFooter(msg.author.username,  msg.author.displayAvatarURL({ dynamic: true }))
-            .setTimestamp()).then(msg => msg.delete({ timeout: 10000 }));
+            .setTimestamp());
         const yid = (music.current.info.identifier);
         const img = ("https://img.youtube.com/vi/");
         const las = ("/maxresdefault.jpg");
@@ -20,7 +19,6 @@ module.exports = {
         let nowPlaying = util.embed()
             .setTitle(`**${music.current.info.title}**.`)
             .setURL(`${music.current.info.uri}`)
-            .setImage(`${img}${yid}${las}`)
             .setAuthor("🎶 | Now playing ", msg.client.user.displayAvatarURL())
 				
             .setTimestamp()
@@ -31,12 +29,11 @@ module.exports = {
         }
         else if 
         (music.player.state.position > 0) {
-            nowPlaying.addField("\u200b", porgressBar({currentPositon:music.player.state.position /1,endPositon:music.current.info.length,width:28,barStyle:"─",currentStyle:"🎶"}, {format:" [ <bar> ] <precent> <%>"}))
-                .setFooter(`Time Remaining: ${rom} Mins`, msg.author.displayAvatarURL({ dynamic: true }));
+            nowPlaying.addField("\u200b", porgressBar({currentPositon:music.player.state.position /1,endPositon:music.current.info.length,width:28,barStyle:"─",currentStyle:"◉"}, {format:" [ <bar> ] <precent> <%>"}));
         }
         else {
             nowPlaying.setFooter(msg.author.username, msg.author.displayAvatarURL({ dynamic: true }));
         }
-        return msg.channel.send(nowPlaying).then(msg => msg.delete({ timeout: 60000 }));
+        return msg.channel.send(nowPlaying);
 		
     }};
