@@ -1,7 +1,7 @@
 <img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="Aqua" src="https://media.discordapp.net/attachments/779192328711045160/853885259556847636/10f7ea41fdacddfba6ec3863eee2a180.png?width=207&height=207"> 
 
 # Aqua Music 🎵
-> A Advanced Discord Music Bot with a 24/7 used by 200K+ users and more than 200 servers and Have Many Premium Features
+> A Advanced Discord Music Bot with a 24/7 used by 200K+ users and more than 200 servers and Have Many Premium Features 
 
 ## About Aqua 🚧
 
