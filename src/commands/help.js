@@ -11,10 +11,10 @@ module.exports = {
             .map(c => `\`${c.name}\``);
 
         const embed = util.embed()
-            .setAuthor("| Aqua Help Menu: all", msg.client.user.displayAvatarURL())
+            .setAuthor("| Msv Help Menu: all", msg.client.user.displayAvatarURL())
             .addField(" **❯ INFO**", `My Prefix is\`${prefix}\` or Just @Mention Me :fingers_crossed:`)
             .addField(" **❯ MUSIC[14] :**", " `play`, `loop`, `lyrics`, `nowplaying`, `pause`, `queue`, `remove`, `resume`, `search`, `shuffle`, `skip`, `skipto`, `stop`, `volume`")
-            .addField(" **❯ FILTERS & MISC[5] :**","`24*7`,`bassboost`, `autoplay`, `seek`,`move`")
+            .addField(" **❯ FILTERS & MISC[7] :**","`nightcore`,`vapowave`,`24*7`,`bassboost`, `autoplay`, `seek`,`move`")
             .addField(" **❯ UTILITIES[4] :**","`stats`,`invite`,`help`, `ping`")
             .setFooter(`© ${msg.guild.me.displayName}`)
             .setColor("f8a408")
