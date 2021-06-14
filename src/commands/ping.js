@@ -6,4 +6,4 @@ module.exports = {
         msg.channel.send(`🏓 Pong! \`${latency}ms\`. API Latency is \`${Math.round(msg.client.ws.ping)}ms\``);
     }
 };
-© 2021 GitHub, Inc.
+
