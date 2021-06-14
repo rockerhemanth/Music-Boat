@@ -12,7 +12,7 @@ module.exports = {
             .addFields(
                 {
                     name: "OWNER",
-                    value:"ARESᴵᴺᴱ#1773",
+                    value:"<@720218422222520410>",
                     inline: true
                 },
                 {
