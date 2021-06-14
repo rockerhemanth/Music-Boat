@@ -12,7 +12,7 @@ module.exports = {
             .addFields(
                 {
                     name: "OWNER",
-                    value:"1947 x ALPHA#1773",
+                    value:"ARESᴵᴺᴱ#1773",
                     inline: true
                 },
                 {
