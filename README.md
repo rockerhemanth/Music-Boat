@@ -6,6 +6,9 @@
 ## About Msv Music 🚧
 
 - A open source Discord bot recoded in JavaScript with [Discord.js](https://discord.js.org/#/) & [Lava link](https://www.npmjs.com/package/lavalink) by Msv Team.
+
+# Toutoreal soon on [YouTube](https://youtube.com/cwkhan)
+
 # Bot Setup ⚒
 
 - Clone the Repo by typing git clone `https://github.com/Just-Msv/Msv-Music` or Download the .rar file
