@@ -5,7 +5,7 @@ module.exports = {
     exec: async (client) => {
         console.log(`Logged in as ${client.user.tag}`);
         let activity = [`${client.guilds.cache.size} Guilds!`, `${client.guilds.cache.reduce((prev, guild) => prev + guild.memberCount, 0)} | Members!`, `${client.channels.cache.size} | Channels!`], i = 0;
-        setInterval(() => client.user.setActivity(`@Aqua Music`, { type: "LISTENING", url: "https://www.twitch.tv/nanotect_" }), 15000);
+        setInterval(() => client.user.setActivity(`@Msv Music`, { type: "LISTENING", url: "https://www.twitch.tv/nanotect_" }), 15000);
 
         if (client.spotify) await client.spotify.requestToken();
 
