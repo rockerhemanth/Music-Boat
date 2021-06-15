@@ -20,6 +20,10 @@
 
 -  Video Will be soon on [YouTube](https://youtube.com/cwkhan)
 
+# Lavalink Setup On Replit 🔉
+
+- Check [**Lavalink-Replit**](https://github.com/Just-Msv/lavalink-replit) And You Can Host Your Self 😁 The Lavalink Server
+
 # Mongo Database Setup 🌿
 
 - Come on official MongoDB website. [Register](https://account.mongodb.com/account/register) or [Login](https://account.mongodb.com/account/login) into your account.
