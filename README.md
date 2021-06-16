@@ -15,10 +15,6 @@
 - **Install** all the packages by typing `npm i`
 - **Start** the bot by typing `npm start`.
 
-### Tutorial 🎥
-
--  Video Will be soon on [YouTube](https://youtube.com/cwkhan)
-
 # Lavalink Setup On Replit 🔉
 
 - Check [**Lavalink-Replit**](https://github.com/Just-Msv/lavalink-replit) And You Can Host Your Self 😁 The Lavalink Server
