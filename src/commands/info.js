@@ -42,7 +42,7 @@ module.exports = {
                     inline: true
                 },
                 {
-                    name: "Servers",
+                    name: "Bot Users",
                     value: `${msg.client.guilds.cache.reduce((prev, guild) => prev + guild.memberCount, 0)}`,
                     inline: true
                 }
