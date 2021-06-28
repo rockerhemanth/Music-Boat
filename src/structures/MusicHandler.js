@@ -78,19 +78,19 @@ module.exports = class MusicHandler {
                     .setDescription(`[${this.current.info.title}](${this.current.info.uri})`)
                 );
             })
-            .on("end", (data) => {
+           .on("end", (data) => {
                 if (data.reason === "REPLACED") return;
                 this.previous = this.current;
                 this.current = null;
-                if (this.loop) this.queue.push(this.previous);
+
+                if (this.loop === 1 && !this.shouldSkipCurrent) this.queue.unshift(this.previous);
+                else if (this.loop === 2) this.queue.push(this.previous);
+
+                if (this.shouldSkipCurrent) this.shouldSkipCurrent = false;
+
                 if (!this.queue.length) {
-                    let x = db.get(`247_${this.guild.id}`);
-                    if(!x == true){
-                        this.client.manager.leave(this.guild.id);
-                    } 
-                     if (this.textChannel) this.textChannel.send(util.embed()
-                        .setAuthor(" |  Queue Is Empty ", this.client.user.displayAvatarURL()) 
-                    );
+                    this.client.manager.leave(this.guild.id);
+                    if (this.textChannel) this.textChannel.send(util.embed().setDescription("✅ | Queue is empty "));
                     this.reset();
                     return;
                 }
