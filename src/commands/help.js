@@ -11,11 +11,11 @@ module.exports = {
             .map(c => `\`${c.name}\``);
 
         const embed = util.embed()
-            .setAuthor("| Msv Help Menu: all", msg.client.user.displayAvatarURL())
-            .addField(" **❯ INFO**", `My Prefix is\`${prefix}\` or Just @Mention Me :fingers_crossed:`)
-            .addField(" **❯ MUSIC[14] :**", " `play`, `loop`, `lyrics`, `nowplaying`, `pause`, `queue`, `remove`, `resume`, `search`, `shuffle`, `skip`, `skipto`, `stop`, `volume`")
-            .addField(" **❯ FILTERS & MISC[7] :**","`nightcore`,`vapowave`,`24*7`,`bassboost`, `autoplay`, `seek`,`move`")
-            .addField(" **❯ UTILITIES[4] :**","`stats`,`invite`,`help`, `ping`")
+            .setAuthor("| Msv Music", msg.client.user.displayAvatarURL())
+            .addField(" **❯ Configuration :**","`247`,`autoplay`")
+            .addField(" **❯ Music :**", " `play`, `loop`, `lyrics`, `nowplaying`, `pause`, `queue`, `remove`, `resume`, `search`, `shuffle`, `skip`, `skipto`, `stop`, `volume`")
+            .addField(" **❯ Filters**","`nightcore`,`vapowave`,`bassboost`, `seek`,`move`")
+            .addField(" **❯ Misc :**","`source`,`stats`,`invite`,`help`, `ping`")
             .setFooter(`© ${msg.guild.me.displayName}`)
             .setColor("f8a408")
             .setThumbnail(msg.client.user.displayAvatarURL({ dynamic: true, size: 2048 }))
