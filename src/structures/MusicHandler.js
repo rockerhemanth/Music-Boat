@@ -1,19 +1,8 @@
 const Rest = require("./Rest");
 const util = require("../util");
 const message = require("../listeners/message");
-const db = require("quick.db");
 const FiltersValues = require("../constants/FiltersValues");
 
-const { Database } = require("quickmongo");
-const mongo = new Database(process.env.MONGO_URI);
-function importData() {
-    const data = db.all();
-    mongo.import(data).then(() => {
-        console.log("Done!");
-    });    
-}
-
-mongo.on("ready", () => importData());
 
 module.exports = class MusicHandler {
     /** @param {import("discord.js").Guild} guild */
@@ -24,12 +13,12 @@ module.exports = class MusicHandler {
         this.previous = null;
         this.nightcore = false;
         this.vaporwave = false;
-        this._8d = false;
         this.bassboost = false;
         this.current = null;
         this.queue = [];
         /** @type {import("discord.js").TextChannel|null} */
         this.textChannel = null;
+        this.shouldSkipCurrent = false;
     }
 
     get voiceChannel() {
@@ -55,9 +44,8 @@ module.exports = class MusicHandler {
         this.previous = null;
         this.current = null;
         this.queue = [];
-         this.nightcore = false;
+        this.nightcore = false;
         this.vaporwave = false;
-        this._8d = false;
         this.textChannel = null;
     }
 
@@ -78,7 +66,8 @@ module.exports = class MusicHandler {
                     .setDescription(`[${this.current.info.title}](${this.current.info.uri})`)
                 );
             })
-           .on("end", (data) => {
+           
+                .on("end", async (data) => {
                 if (data.reason === "REPLACED") return;
                 this.previous = this.current;
                 this.current = null;
@@ -89,8 +78,11 @@ module.exports = class MusicHandler {
                 if (this.shouldSkipCurrent) this.shouldSkipCurrent = false;
 
                 if (!this.queue.length) {
-                    this.client.manager.leave(this.guild.id);
-                    if (this.textChannel) this.textChannel.send(util.embed().setDescription("✅ | Queue is empty "));
+                    let x = await this.client.db.get(`247_${this.guild.id}`);
+                    if(!x == true){
+                        this.client.manager.leave(this.guild.id);
+                    }
+                    if (this.textChannel) this.textChannel.send(util.embed().setDescription("✅ | Queue is empty."));
                     this.reset();
                     return;
                 }
@@ -194,34 +186,10 @@ module.exports = class MusicHandler {
         else return;
     }
 
-    async set8D(val) {
-        if(val === true){
-            this.vaporwave = false;
-            this.nightcore = false;
-            this.bassboost = false;
-            this.player.node.send({
-                op: "filters",
-                guildId: this.guild.id || this.guild,
-                rotation : { rotationHz: 0.29999 },
-            });
-            this._8d = true;
-        }
-        else if(val === false){
-            this.player.node.send({
-                op: "filters",
-                guildId: this.guild.id || this.guild,
-            });
-            this._8d = false;
-        }
-        else return;
-    }
-
     async setBassboost(bassboost) {
         if (bassboost) {
             this.nightcore = false;
             this.vaporwave = false;
-            this._8d = false;
-            this.set8D(false);
             this.setNightcore(false);
             this.setNightcore(false);
             this.player.equalizer(Array(3).fill(null).map((n, i) => ({ band: i, gain: bassboost })));
