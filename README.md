@@ -66,8 +66,6 @@
 
 - [🎉] Congratulations! We have created a base, now we need a link to connect to the base. To do this, again go to the **Clusters** tab
 
-![](https://cdn.discordapp.com/attachments/667072123914813444/686353626029228097/IMG_20200309_042035.png)
-
 
 - We see our newly created cluster. We find a button labeled ***CONNECT***, press it. A window opens, click the second section ("Connect Using MongoDB Compass"). After that you will see the ***copy*** button (this link cannot be shown to people. If they find out the name and password from the database, they will be able to manage your database.). Copy the link and paste it into our code. `.env -> MONGO_URI`
 
