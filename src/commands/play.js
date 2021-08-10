@@ -2,7 +2,7 @@ const util = require("../util");
 
 module.exports = {
     name: "play",
-    aliases: ["p", "P"],
+    aliases: ["p","play"],
     exec: async (msg, args) => {
         const { music } = msg.guild;
         if (!msg.member.voice.channel)
