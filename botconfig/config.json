@@ -1,0 +1,43 @@
+{
+  "token": "",
+  "Topgg_api":"", 
+  "mongo": "",
+  "prefix": "",
+  "webhookurl": "",
+  "botupdatechannelid" : "",
+  "geniuskey" : "",
+  "clientsettings": {
+    "nodes": [
+      {
+        "host": "" ,
+        "port": 80
+        "password": "",
+        "secure": true 
+      }
+    ]
+  },
+  "spotify": {
+    "clientSecret": "bdbfea29444c451d95c03581480e34ae",
+    "clientID": "be8b7b2b80c5464bb85bb30bb632e236"
+  },
+  "settings": {
+    "COMMENT": "time_delay 0 === insta leave",
+    "progressbar_emoji": "",
+    "leaveOnEmpty_Channel": {
+      "enabled": false,
+      "time_delay": 180000
+    },
+    "LeaveOnEmpty_Queue": {
+      "enabled": false,
+      "time_delay": 180000
+    },
+    "selfDeaf": true,
+    "serverDeaf": true
+  },
+  "links": {
+    "server": "",
+    "msvmusicinv": ""
+
+  },
+  "ownerIDS": [""]
+}
