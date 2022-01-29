@@ -7,13 +7,14 @@
 
 - A open source Discord bot recoded in JavaScript with [Discord.js](https://discord.js.org/#/) & [Lava link](https://www.npmjs.com/package/lavalink) by My Team.
 - It Is Easy To Host In Vistual Studio Code And Replit  
+- It Was A templete of a [Tomato6966](https://github.com/tomato6966) But Change the Database and More
 
 # Bot Setup ⚒
 
 - Clone the Repo by typing git clone `https://github.com/Just-Msv/Msv-Music` or Download the .rar file
-- Set up your `.env` file with your respective information.
+- Set up your `botconfig` files with your respective information.
 - **Install** all the packages by typing `npm i`
-- **Start** the bot by typing `npm start`.
+- **Start** the bot by typing `npx node msvmusic.js`.
 
 # Lavalink Setup On Replit 🔉
 
