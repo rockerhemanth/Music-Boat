@@ -15,6 +15,7 @@ module.exports = {
   aliases: [`p`],
   description: `Plays a song from youtube`,
   usage: `play <Song / URL>`,
+  botperms: [ `CONNECT`, `SPEAK` ],
   parameters: {"type":"music", "activeplayer": false, "previoussong": false},
   run: async (client, message, args, guildData, player, prefix) => {
     try{
@@ -29,12 +30,12 @@ module.exports = {
       if (!args[0]) {
         const ppp = new MessageEmbed()
         .setColor(ee.wrongcolor)
-        .setDescription(`${emoji.msg.ERROR} You need to give me a URL or a Search term.`)
-        return message.channel.send({embeds: [ppp]});
+        .setAuthor(`| You need to give me a URL or a Search term.`, message.author.displayAvatarURL({ dynamic: true }))
+        return message.reply({embeds: [ppp], allowedMentions: { repliedUser: false }});
       }
 
       try {
-        message.react(emoji.msg.SUCCESS).catch((_) => { })
+        message.react(emoji.msg.SUCCESS)
       } catch {/* */}
   
       //play the SONG from YOUTUBE
