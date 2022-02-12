@@ -1,1 +1,1 @@
-worker: node msvmusic.js
+worker: node shard.js
