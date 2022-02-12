@@ -1,18 +1,22 @@
 {
   "token": "",
-  "Topgg_api":"", 
+  "Topgg_api":"",
   "mongo": "",
   "prefix": "",
   "webhookurl": "",
-  "botupdatechannelid" : "",
-  "geniuskey" : "",
   "clientsettings": {
     "nodes": [
       {
-        "host": "" ,
-        "port": 80,
-        "password": "",
-        "secure": true 
+        "host": "lavalink.islantay.tk" ,
+        "port": 8880,
+        "password": "waifufufufu",
+        "secure": false 
+      },
+      {
+        "host": "losingtime.dpaste.org" ,
+        "port": 2124,
+        "password": "SleepingOnTrains",
+        "secure": false 
       }
     ]
   },
@@ -22,7 +26,7 @@
   },
   "settings": {
     "COMMENT": "time_delay 0 === insta leave",
-    "progressbar_emoji": "",
+    "progressbar_emoji": ":<:s_progress:866946355891929098>",
     "leaveOnEmpty_Channel": {
       "enabled": false,
       "time_delay": 180000
@@ -35,9 +39,11 @@
     "serverDeaf": true
   },
   "links": {
-    "server": "",
+    "server": "https://discord.gg/r5y7s8sJss",
     "msvmusicinv": ""
-
   },
-  "ownerIDS": [""]
+  "ownerIDS": [
+    "720218422222520410",
+    "798871663704932402"
+  ]
 }
