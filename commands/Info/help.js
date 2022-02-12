@@ -70,7 +70,7 @@ const {
     new MessageButton()
       .setLabel("Support Server")
       .setStyle("LINK")
-      .setURL("https://discord.gg/j7E5759ffc")
+      .setURL("https://discord.gg/r5y7s8sJss")
       .setEmoji("<:G_question:924602362876788766>"),
     new MessageButton()
      .setLabel("Vote Me")
@@ -88,7 +88,7 @@ const {
         const mainmenu = new MessageEmbed()
          .setAuthor("Music-Boat Help Panel", ee.footericon)
         .setThumbnail(client.user.avatarURL())
-        .setDescription(`Music-Boat is the easiest way to play music in your Discord server. It supports Spotify, YouTube, Soundcloud and more`)
+        .setDescription(`Music-Boat is the easiest way to play music in your Discord server. It supports Spotify, YouTube, and more`)
         .addField(`● Config [3]`, \`autoplay\`, \`prefix\`, \`announce\``)
         .addField(`● Filters [13]`, `\`8d\`, \`bassboost\`, \`nightcore\`, \`daycore\`, \`reset\`, \`speed\`,\`chipmunk\`,\`darthvader\`,\`deepbass\`,\`soft\`,\`pop\`,\`soft\`,\`vibrate\``)
         .addField(`● Music [19]`, `\`clearqueue\`, \`join\`, \`loop\`, \`nowplaying\`, \`pause\`, \`play\`, \`queue\`, \`remove\`, \`replay\`, \`resume\`, \`restart\`, \`resume\`, \`search\`, \`seek\`, \`shuffle\`, \`skip\`, \`skipto\`, \`stop\`, \`volume\``)
