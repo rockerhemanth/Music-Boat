@@ -2,7 +2,7 @@
   "token": "",
   "Topgg_api":"",
   "mongo": "",
-  "prefix": "",
+  "prefix": "m!",
   "webhookurl": "",
   "clientsettings": {
     "nodes": [
