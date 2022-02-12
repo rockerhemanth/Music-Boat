@@ -1,9 +1,8 @@
-var {
-  MessageEmbed
-} = require("discord.js"),
+var { MessageEmbed } = require("discord.js"),
 
 config = require("../../botconfig/config.json"),
 emoji = require("../../botconfig/emojis.json"),
+
 ee = require("../../botconfig/embed.json"),
 
 {
@@ -12,7 +11,7 @@ ee = require("../../botconfig/embed.json"),
   findOrCreateGuild
 } = require("../../handlers/functions"),
 
-hasmap = new Map();
+ehasmap = new Map();
 var mi;
 module.exports = (client, message) => {
   client.manager
@@ -45,7 +44,7 @@ module.exports = (client, message) => {
         setTimeout(() => player.pause(false), 3000);
       }
   })
-  .on("trackStart", async (player, track, message) => {
+  .on("trackStart", async (player, track,tracks, message) => {
     try {
       player.set("previoustrack", track);
       //wait 500 ms
@@ -54,18 +53,49 @@ module.exports = (client, message) => {
           resolve(2);
         }, 500);
       });
-      // playANewTrack(client,player,track);
+      const { MessageButton, MessageActionRow, collector} = require("discord.js")
+
+            let playrow = new MessageActionRow()
+            .addComponents(
+              new MessageButton()
+                .setStyle("SECONDARY")
+                .setCustomId("reducev")
+                .setEmoji("<:volume:940858564040359978>")
+                .setLabel(`Reduce`),  
+              new MessageButton()
+                .setStyle("SUCCESS")
+                .setCustomId("pause-resume")
+                .setEmoji("<:resume:940504834707173376>")
+                .setLabel(`Pause & Resume`),
+              new MessageButton()
+                .setStyle("SECONDARY")
+                .setCustomId("skip")
+                .setEmoji("<:skip:940505504935993354> ")
+                .setLabel(`Skip`),
+              new MessageButton()
+                .setStyle("DANGER")
+                .setCustomId("stop")
+                .setEmoji("<:trash:940507791498571806>")
+                .setLabel(`Stop`),
+              new MessageButton()
+                .setStyle("SUCCESS")
+                .setCustomId("raisev")
+                .setEmoji("<:volume:940858564040359978>")
+                .setLabel(`Raise`),
+          
+                
+            );
+ 
+      
       var embed = new MessageEmbed().setColor(ee.color)
       embed.setColor(ee.color)
-      embed.setAuthor(`Now Playing`, "https://cdn.discordapp.com/avatars/884467910494535741/e11fc9965541d9b0d0850e38e7fdb29a.png?size=1024")
+      embed.setAuthor(` | Now Playing`, track.requester.displayAvatarURL({dynamic: true}))
          
-      embed.setDescription(`[${track.title}](${track.uri}) [<@${track.requester.id}>]`)
-
-      
+      embed.setDescription(`[${track.title}](${track.uri}) [${track.isStream ? `LIVE STREAM` : format(track.duration).split(` | `)[0]}]`)
 
       const guildData = await findOrCreateGuild(client, { id: player.guild });
       if(guildData.announce) {
-        await client.channels.cache.get(player.textChannel).send({embeds: [embed]}).then(msg => {
+        await client.channels.cache.get(player.textChannel).send({embeds: [embed], components: [playrow]}).then(msg => {
           if(guildData.pruning) {
             if (player.get(`playingsongmsg`) && msg.id !== player.get(`playingsongmsg`).id) {
               player.get(`playingsongmsg`).delete().catch(e => console.log("couldn't delete message this is a catch to prevent a crash".grey));
@@ -84,7 +114,7 @@ module.exports = (client, message) => {
   .on("trackStuck", (player, track, payload) => {
     player.stop();
     var embed = new MessageEmbed()
-    .setTitle(`Track Stuck`)
+    .setTitle(`Track Stuck `)
     .setDescription(`[${track.title}](${track.uri})`)
     .setColor(ee.wrongcolor)
     try {
@@ -99,13 +129,15 @@ module.exports = (client, message) => {
     player.stop();
     try {
       var embed = new MessageEmbed()
-      .setDescription(`${emoji.msg.ERROR} Track got errored!`)
+      .setAuthor(`| Something went wrong with playing the Track`, client.user.displayAvatarURL())
+       .setDescription(`track - [${track.title}](${track.uri})- Something went wrong when decoding the track.`)
       .setColor(ee.wrongcolor)  
-      client.channels.cache.get(player.textChannel).send({embeds: [embed]}).then(msg => {
+      client.channels.cache.get
+      (player.textChannel).send({embeds: [embed]}).then(msg => {
         if(msg && msg.deletable) {
           setTimeout(() => {
             msg.delete().catch(e => console.log("couldn't delete message this is a catch to prevent a crash".grey));
-          }, 5000)
+          }, 50000)
         }
       });
     } catch {/* */}
@@ -113,10 +145,11 @@ module.exports = (client, message) => {
   .on("queueEnd", async (player) => {
     if (player.get("autoplay")) return autoplay(client, player);
     //DEvar TIME OUT
+ 
     const embed = new MessageEmbed()
     .setColor(ee.color)
-    .setTitle(`Queue Empty`)
-    .setDescription(`Queue more song to keep the party going.`);
+    .setAuthor(`| Queue More Songs/Enable AutoPlay`,client.user.displayAvatarURL())
+                                                  
     try{
       client.channels.cache.get(player.textChannel).send({embeds: [embed]})
     } catch {/* */}
