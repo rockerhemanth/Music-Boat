@@ -89,7 +89,7 @@ const {
          .setAuthor("Music-Boat Help Panel", ee.footericon)
         .setThumbnail(client.user.avatarURL())
         .setDescription(`Music-Boat is the easiest way to play music in your Discord server. It supports Spotify, YouTube, and more`)
-        .addField(`● Config [3]`, \`autoplay\`, \`prefix\`, \`announce\``)
+        .addField(`● Config [3]`, `\`autoplay\`, \`prefix\`, \`announce\``)
         .addField(`● Filters [13]`, `\`8d\`, \`bassboost\`, \`nightcore\`, \`daycore\`, \`reset\`, \`speed\`,\`chipmunk\`,\`darthvader\`,\`deepbass\`,\`soft\`,\`pop\`,\`soft\`,\`vibrate\``)
         .addField(`● Music [19]`, `\`clearqueue\`, \`join\`, \`loop\`, \`nowplaying\`, \`pause\`, \`play\`, \`queue\`, \`remove\`, \`replay\`, \`resume\`, \`restart\`, \`resume\`, \`search\`, \`seek\`, \`shuffle\`, \`skip\`, \`skipto\`, \`stop\`, \`volume\``)
         .addField(`● Owner [4]`,`\`reload\`, \`eval\`, \`execute\`,\`restart\``)
