@@ -16,7 +16,7 @@
     "discord-buttons": "^4.0.0",
     "discord-reply": "^0.1.2",
     "discord.js": "^13.1.0",
-    "discordjs-button-pagination": "^2.0.0",
+    "discordjs-button-pagination": "^3.0.1",
     "discordnpm": "^1.0.1",
     "enmap": "^5.8.7",
     "erela.js": "^2.3.3",
