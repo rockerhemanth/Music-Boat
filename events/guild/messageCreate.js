@@ -7,18 +7,18 @@ const {
   MessageEmbed
 } = require(`discord.js`);
 
-module.exports = async (client, message) => {
+module.exports = async (client, message,guild) => {
     
     if (!message.guild || !message.channel) return;
-   
+    
     if (message.channel.partial) await message.channel.fetch();
     
     if (message.partial) await message.fetch();
     
     if (message.author.bot) return;
-
-    const guildData = await findOrCreateGuild(client, { id: message.guild.id });
     
+    const guildData = await findOrCreateGuild(client, { id: message.guild.id });
+   
     let prefix = guildData.prefix;
     
     if (prefix === null) prefix = config.prefix;
@@ -26,29 +26,41 @@ module.exports = async (client, message) => {
     const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(prefix)})\\s*`);
     
     if (!prefixRegex.test(message.content)) return;
-    
+   
     const [, matchedPrefix] = message.content.match(prefixRegex);
 
     let not_allowed = false;
     
     const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
-    
+    //creating the cmd argument by shifting the args by 1
     const cmd = args.shift().toLowerCase();
-   
+    //if no cmd added return error
     if (cmd.length === 0){
       not_allowed = true;
       if(matchedPrefix.includes(client.user.id)){
-        const fff = new Discord.MessageEmbed()
-        .setAuthor(`Msv Music`, client.user.displayAvatarURL({dynamic: true}), config.links.opmusicinv)
-        .setThumbnail(ee.footericon)
-        .setDescription(
-`
-My prefix for this server is \`${prefix}\`
-Want to see all the commands available? Use \`${prefix}help\`
-`)
-  		  .setColor("#fd6260")
+        const row = new MessageActionRow()
+        .addComponents(
+          new MessageButton()
+          
+					.setURL("https://discord.com/api/oauth2/authorize?client_id=807855659173150781&permissions=534991339329&redirect_uri=https%3A%2F%2Fdiscord.gg%2Fj7E5759ffc&response_type=code&scope=bot%20applications.commands%20guilds.join")
+          .setLabel("Invite Me!") 
+					.setStyle("LINK")
+          .setEmoji("<:invite:918184240431124480>"),  
+          new MessageButton()
+					.setURL("https://discord.gg/j7E5759ffc")
+          .setLabel("Support Server!")
+          .setEmoji("<:G_question:917238164085678131>")
+					.setStyle("LINK"),
+          
+			);
+        const embed = new MessageEmbed()
+        .setColor('87fdea')
+        .setAuthor('Music-Boat', 'https://media.discordapp.net/attachments/940526488783040523/941910800292016138/qsffqs.png?width=427&height=427','https://discord.com/api/oauth2/authorize?client_id=807855659173150781&permissions=534789880176&redirect_uri=https%3A%2F%2Fdiscord.gg%2FkpjYgY35Vt&response_type=code&scope=bot%20applications.commands%20guilds.join')
+        .setDescription(`Hey, I'm Music-Boat \n **Server Prefix**: \`${prefix}\`\n \n Nike is the easiest way to play music in your discord server.It Supports Spotify,Youtude, Soundcloud and more!! \n \n To get started. join a voice channel and \`${prefix}play\` a song. You can use song names, video links, and playlist links  \n \n **Commands** \n For full list of commands Type \`${prefix}help\``)
+        .setThumbnail("https://media.discordapp.net/attachments/940526488783040523/941910800292016138/qsffqs.png?width=427&height=427");
         
-        return message.reply({embeds: [fff]});
+        message.channel.send({embeds: [embed] ,  components: [row]})
+      
       }
       return;
     }
@@ -58,25 +70,22 @@ Want to see all the commands available? Use \`${prefix}help\`
 
  if (!command) command = client.commands.get(client.aliases.get(cmd));
     if(command){
-      
+     
       if(guildData.botChannels.toString() !== ""){
-        if (!guildData.botChannels.includes(message.channel.id) && !message.member.permissions.has(Discord.Permissions.FLAGS.ADMINISTRATOR)) {
+        if (!guildData.botChannels.includes(message.channel.id) && !message.member.permissions.has(Discord.Permissions.FLAGS.SEND_MESSAGES)) {
           let leftb = "";
           for(let i = 0; i < guildData.botChannels.length; i++){
               leftb  +="<#" +guildData.botChannels[i] + "> / "
           }
           try{ message.react(emoji.msg.ERROR); }catch{}
-          not_allowed = true;
+          not_allowed = false;
           return;
-        }
-      }  
-    }
-
-
-
-
     
-    //if the command does not exist, try to get it by his alias
+        }
+      }
+}
+
+
     if (!command) command = client.commands.get(client.aliases.get(cmd));
     
     //if the command is now valid
@@ -92,23 +101,23 @@ Want to see all the commands available? Use \`${prefix}help\`
         }
         const now = Date.now(); //get the current time
         const timestamps = client.cooldowns.get(command.name); //get the timestamp of the last used commands
-        const cooldownAmount = (command.cooldown || 2.5) * 1000; //get the cooldownamount of the command, if there is no cooldown there will be automatically 1 sec cooldown, so you cannot spam it^^
-        if (timestamps.has(message.author.id)) { //if the user is on cooldown
-          const expirationTime = timestamps.get(message.author.id) + cooldownAmount; //get the amount of time he needs to wait until he can run the cmd again
-          if (now < expirationTime) { //if he is still on cooldonw
-            const timeLeft = (expirationTime - now) / 1000; //get the lefttime
+        const cooldownAmount = (command.cooldown || 2.5) * 1000; 
+        if (timestamps.has(message.author.id)) { 
+          const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+          if (now < expirationTime) { 
+            const timeLeft = (expirationTime - now) / 1000; 
             try{ message.react(emoji.msg.ERROR); }catch{}
             not_allowed = true;
             const idkd = new Discord.MessageEmbed()
             .setColor(ee.wrongcolor)
             .setDescription(`${emoji.msg.ERROR} Please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`)
-            return message.channel.send({embeds: [idkd]}); //send an information message
+            return message.reply({embeds: [idkd], allowedMentions: { repliedUser: false }}); 
           }
         }
-        timestamps.set(message.author.id, now); //if he is not on cooldown, set it to the cooldown
-        setTimeout(() => timestamps.delete(message.author.id), cooldownAmount); //set a timeout function with the cooldown, so it gets deleted later on again
+        timestamps.set(message.author.id, now); 
+        setTimeout(() => timestamps.delete(message.author.id), cooldownAmount); 
       try{
-        // if Command has specific permission return error
+        
         if(command.memberpermissions) {
           if (!message.member.permissions.has(command.memberpermissions)) {
             try{ message.react(emoji.msg.ERROR); }catch{}
@@ -117,20 +126,16 @@ Want to see all the commands available? Use \`${prefix}help\`
             .setColor(ee.wrongcolor)
             .setAuthor(`${message.author.tag} - Error`, message.author.displayAvatarURL( { dynamic: true } ))
             .setDescription(`${emoji.msg.ERROR} | You need these Permissions: \`${command.memberpermissions.join("`, ``")}\``)
-            const x = await message.channel.send({embeds: [idkf]})
+            const x = await message.reply({embeds: [idkf], allowedMentions: { repliedUser: false }})
             setTimeout(() => x.delete().catch(e=>console.log("Could not delete, this prevents a bug")), 5000)
             return;
           }
         }
-        // if Command has specific permission return error
-
         
-
-        //if there is a SETUP with an EXISTING text channel and its a MUSIC or FILTER COMMAND                              AND NOT in the                         RIGHT CHANNEL return error msg        and if its request only enabled
 
         if(command.category.toLowerCase().includes("settings") || command.category.toLowerCase().includes("music") || command.category.toLowerCase().includes("owner")) {
           let neededPermissions = [];
-          let required_perms = [ "ADD_REACTIONS", "VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS", "CONNECT", "SPEAK", "READ_MESSAGE_HISTORY"]
+          let required_perms = ["VIEW_CHANNEL"]
           required_perms.forEach(perm => {
             if(!message.channel.permissionsFor(message.guild.me).has(perm)){
               neededPermissions.push(perm);
@@ -140,8 +145,8 @@ Want to see all the commands available? Use \`${prefix}help\`
             const MISSING_BOT_PERMS = new MessageEmbed()
             .setAuthor(`${message.author.tag} - Error`, message.author.displayAvatarURL( { dynamic: true } ))
             .setDescription(`${emoji.msg.ERROR} | I need ${neededPermissions.map((p) => `\`${p}\``).join(", ")} to execute this command`)
-            .setColor("RED");
-            return message.channel.send({embeds: [MISSING_BOT_PERMS]});
+            .setColor(ee.color)
+            return message.reply({embeds: [MISSING_BOT_PERMS], allowedMentions: { repliedUser: false }});
           }    
         }
 
@@ -157,9 +162,8 @@ Want to see all the commands available? Use \`${prefix}help\`
               not_allowed = true;
               const opop = new MessageEmbed()
               .setColor(ee.wrongcolor)
-              .setAuthor(`${message.author.tag} - Error`, message.author.displayAvatarURL( { dynamic: true } ))
-              .setDescription(`${emoji.msg.ERROR} | You have to be connected to a voice channel before you can use this command.`)
-              return message.channel.send({embeds: [opop]});
+              .setAuthor(`|  You aren't connected to a voice channel.`, message.author.displayAvatarURL( { dynamic: true } ))
+              return message.reply({embeds: [opop], allowedMentions: { repliedUser: false }});
             }
             //If there is no player, then kick the bot out of the channel, if connected to
             if(!player && mechannel) {
@@ -177,25 +181,22 @@ Want to see all the commands available? Use \`${prefix}help\`
                 not_allowed = true;
                 const udfj = new MessageEmbed()
                 .setColor(ee.wrongcolor)
-                .setAuthor(`${message.author.tag} - Error`, message.author.displayAvatarURL( { dynamic: true } ))
-                .setDescription(`${emoji.msg.ERROR} | There is nothing playing`)
-                return message.channel.send({embeds: [udfj]});
+                .setAuthor(`| Currently Not Playing anything`, message.author.displayAvatarURL( { dynamic: true } ))
+                return message.reply({embeds: [udfj] , allowedMentions: { repliedUser: false }});
               }
               if (!mechannel){
                 if(player) try{ player.destroy() }catch{ }
                 not_allowed = true;
                 const mmmm = new MessageEmbed()
                 .setColor(ee.wrongcolor)
-                .setAuthor(`${message.author.tag} - Error`, message.author.displayAvatarURL( { dynamic: true } ))
-                .setDescription(`${emoji.msg.ERROR} | I am not connected to a Channel`)
-                return message.channel.send({embeds: [mmmm]});
+                .setAuthor(`| The bot Not connected to a voice channel.`, message.author.displayAvatarURL( { dynamic: true } ))
+                return message.reply({embeds: [mmmm], allowedMentions: { repliedUser: false }});
               }
               if(!player.queue.current) {
                 const no = new MessageEmbed()
                 .setColor(ee.wrongcolor)
-                .setAuthor(`${message.author.tag} - Error`, message.author.displayAvatarURL( { dynamic: true } ))
-                .setDescription(`${emoji.msg.ERROR} | There is nothing playing`)
-                return message.channel.send({embeds: [no]})
+                .setAuthor(`|  Currently Not Playing anything`, message.author.displayAvatarURL( { dynamic: true } ))
+                return message.reply({embeds: [no], allowedMentions: { repliedUser: false }})
               }
             }
             //if no previoussong
@@ -204,32 +205,30 @@ Want to see all the commands available? Use \`${prefix}help\`
                 not_allowed = true;
                 const ifkf = new MessageEmbed()
                 .setColor(ee.wrongcolor)
-                .setAuthor(`${message.author.tag} - Error`, message.author.displayAvatarURL( { dynamic: true } ))
-                .setDescription(`${emoji.msg.ERROR} | There is no previous song yet!`)
-                return message.channel.send({embeds: [ifkf]});
+                .setAuthor(`| There is no previous song yet!`, message.author.displayAvatarURL( { dynamic: true } ))
+                return message.reply({embeds: [ifkf], allowedMentions: { repliedUser: false }});
               }
             }
             //if not in the same channel --> return
             if (player && channel.id !== player.voiceChannel && !command.parameters.notsamechannel) {
               const ikkkk = new MessageEmbed()
               .setColor(ee.wrongcolor)
-              .setAuthor(`${message.author.tag} - Error`, message.author.displayAvatarURL( { dynamic: true } ))
-              .setDescription(`${emoji.msg.ERROR} | You Need To Join My Channel To Use This Command`)
-              return message.channel.send({embeds: [ikkkk]});
+          
+              .setAuthor(`| You aren't connected to the same voice channel as I am`, message.author.displayAvatarURL( { dynamic: true } ))
+              return message.reply({embeds: [ikkkk], allowedMentions: { repliedUser: false }});
             }
             //if not in the same channel --> return
             if (mechannel && channel.id !== mechannel.id && !command.parameters.notsamechannel) {
               const ikk = new MessageEmbed()
               .setColor(ee.wrongcolor)
-              .setAuthor(`${message.author.tag} - Error`, message.author.displayAvatarURL( { dynamic: true } ))
-              .setDescription(`${emoji.msg.ERROR} | You Need To Join My Channel To Use This Command`)
-              return message.channel.send({embeds: [ikk]});
+              .setAuthor(` | You aren't connected to the same voice channel as I am`, message.author.displayAvatarURL( { dynamic: true } ))
+              return message.reply({embeds: [ikk], allowedMentions: { repliedUser: false }}); 
             }
           }
         }
         //run the command with the parameters:  client, message, args, user, text, prefix,
         if(not_allowed) return;
-        command.run(client, message, args, guildData, player, prefix);
+        command.run(client, message, args, guildData, player, prefix, guild);
         console.log(`${message.author.tag} ran ${command.name}`)
       }catch (e) {
         console.log(String(e.stack).red)
@@ -244,4 +243,3 @@ Want to see all the commands available? Use \`${prefix}help\`
     }
     else //if the command is not found send an info msg
     return;
-}
