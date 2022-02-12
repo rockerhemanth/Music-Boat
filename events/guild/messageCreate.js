@@ -243,3 +243,4 @@ module.exports = async (client, message,guild) => {
     }
     else //if the command is not found send an info msg
     return;
+}
